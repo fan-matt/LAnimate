@@ -1,12 +1,10 @@
 import React from 'react';
 import logo from './logo.svg';
-import "./reset.css";
-import './App.css';
+import "./reset.scss";
+import './App.scss';
 
 import MainHeader from "./components/MainHeader/MainHeader.js";
 import GraphApp from "./components/GraphApp/GraphApp.js";
-
-import { HEADER_HEIGHT } from "./consts/layoutConsts.js";
 
 
 function App() {
@@ -14,7 +12,7 @@ function App() {
     <div className="App">
       <MainHeader className="main-header" />
 
-      <div style={{height: HEADER_HEIGHT,}}> </div>
+      <div className="header-body-spacer"> </div>
 
       <GraphApp className="graph-app" />
     </div>

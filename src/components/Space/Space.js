@@ -5,7 +5,7 @@ import Grid from "./../Grid/Grid.js";
 
 import CT from "./../../util/CoordinateTranslate.js";
 
-import "./Space.css";
+import "./Space.scss";
 
 
 class Space extends React.Component {
@@ -24,9 +24,16 @@ class Space extends React.Component {
         let spaceWidth = this.myRef.current.offsetWidth;
         let spaceHeight = this.myRef.current.offsetHeight;
 
+        // We do this part since we don't want to pan- at least for now...
+        let tempTransformer = new CT();
+        tempTransformer.origin = [spaceWidth / 2 , spaceHeight / 2];
+        tempTransformer.scale = 50;
+
+
         this.setState({
             width: spaceWidth,
             height: spaceHeight,
+            transformer: tempTransformer,
         });
     }
 
