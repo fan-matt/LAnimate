@@ -4,3 +4,13 @@
 
     box-shadow: 3px 0px 8px black;
 }
+
+
+.gacp-menu-nav {
+    nav {
+        ul {
+            display: flex;
+            flex-direction: row;
+        }
+    }
+}
