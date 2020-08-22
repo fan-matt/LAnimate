@@ -17,10 +17,39 @@ const CPanel = styled.div`
 const Menu = styled.ul`
     display: flex;
     flex-direction: horizontal;
+    justify-content: space-evenly;
+
+    ${'' /* padding-bottom: 10px; */}
+
+    border-bottom: solid;
+    border-width: 1px;
+    border-color: gray;
 `;
 
 const MenuItem = styled(Button)`
+    position: relative;
+    display: inline-block;
+    padding: 15px;
+    cursor: pointer;
 
+    &::before {
+        position: absolute;
+        display: inline-block;
+        content: "";
+        overflow: visible;
+        bottom: 7px;
+        width: calc(100% - 30px);   ${'' /* subtract double padding */}
+        height: 3px;
+        margin: 0;
+        background-color: #B1E4E3;
+        transition: .3s;
+        transform: scaleX( ${props => props.selected ? 1 : 0} );
+        ${'' /* transform: scaleX(0); */}
+    }
+
+    &:hover::before {
+        transform: scaleX(1);
+    }
 `;
 
 const FAB = styled(FAButton)`
@@ -58,11 +87,11 @@ export default function GAControlPanel(props) {
     return(
         <CPanel>
             <Menu>
-                <MenuItem onClick={() => setBodyIndex(0)}>
+                <MenuItem onClick={() => setBodyIndex(0)} selected={bodyIndex === 0 ? true : false}>
                     Vectors
                 </MenuItem>
 
-                <MenuItem onClick={() => setBodyIndex(1)}>
+                <MenuItem onClick={() => setBodyIndex(1)} selected={bodyIndex === 1 ? true : false}>
                     Transformations
                 </MenuItem>
             </Menu>
