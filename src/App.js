@@ -1,22 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
+import styled from 'styled-components';
+
 import "./reset.scss";
-import './App.scss';
 
 import MainHeader from "./components/MainHeader/MainHeader.js";
 import GraphApp from "./components/GraphApp/GraphApp.js";
 
+import { HEADER_HEIGHT } from './consts/layoutConsts.js';
 
-function App() {
-  return (
-    <div className="App">
-      <MainHeader className="main-header" />
 
-      <div className="header-body-spacer"> </div>
+const StyledApp = styled.div`
+	position: relative;
 
-      <GraphApp className="graph-app" />
-    </div>
-  );
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    	'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    	sans-serif;
+`;
+
+const GApp = styled(GraphApp)`
+	margin-top: ${HEADER_HEIGHT};
+  	width: 100vw;
+  	height: calc(100vh - ${HEADER_HEIGHT});
+`;
+
+
+export default function App() {
+  	return (
+    	<StyledApp>
+      		<MainHeader />
+      		<GApp />
+    	</StyledApp>
+  	);
 }
-
-export default App;

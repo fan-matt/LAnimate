@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Stage , Layer , Text } from "react-konva";
+import { Stage } from "react-konva";
 
 import Grid from "./../Grid/Grid.js";
 

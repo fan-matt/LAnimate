@@ -1,10 +1,15 @@
 import React from "react";
+import styled from 'styled-components';
+
+const StyledButton = styled.div`
+    cursor: pointer;
+`;
 
 
 export default function Button(props) {
     return(
-        <span className={props.className} onClick={props.onClick}>
+        <StyledButton className={props.className} onClick={props.onClick}>
             {props.children}
-        </span>
+        </StyledButton>
     );
 }

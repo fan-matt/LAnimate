@@ -13,8 +13,7 @@ class Grid extends React.Component {
         let xGridLines = [];
         let yGridLines = [];
 
-        const SCALE_TEXT_OFFSET_PRIMARY = 15;
-        const SCALE_TEXT_OFFSET_SECONDARY = 5;
+        const SCALE_TEXT_OFFSET = 15;
 
 
         for(let i = -10; i <= 10; i += 1) {
@@ -22,7 +21,7 @@ class Grid extends React.Component {
             let scaleTextCoordinates = this.props.transformer.toScreen([currentX , 0]);   
 
             xGridLines.push(
-                <>
+                <React.Fragment key={'x-gridline' + String(i)}>
                     <ExtendedLine 
                         point1={[currentX , 0]}
                         point2={[currentX , 1]}
@@ -34,10 +33,10 @@ class Grid extends React.Component {
 
                     <Text 
                         x={scaleTextCoordinates[0] - 4}
-                        y={scaleTextCoordinates[1] + SCALE_TEXT_OFFSET_PRIMARY}
+                        y={scaleTextCoordinates[1] + SCALE_TEXT_OFFSET}
                         text={currentX}
                     />
-                </>
+                </React.Fragment>
             )
         }
 
@@ -47,7 +46,7 @@ class Grid extends React.Component {
             let scaleTextCoordinates = this.props.transformer.toScreen([0 , currentY]);
 
             xGridLines.push(
-                <>
+                <React.Fragment key={'y-gridline' + String(i)}>
                     <ExtendedLine 
                         point1={[0 , currentY]}
                         point2={[1 , currentY]}
@@ -58,18 +57,18 @@ class Grid extends React.Component {
                     />
 
                     <Text 
-                        x={scaleTextCoordinates[0] - SCALE_TEXT_OFFSET_PRIMARY}
+                        x={scaleTextCoordinates[0] - SCALE_TEXT_OFFSET}
                         y={scaleTextCoordinates[1] - 5}
                         text={currentY}
                     />
-                </>
+                </React.Fragment>
             )
         }
         
 
 
         return(
-            <Layer>
+            <Layer className={this.props.className}>
                 <Circle 
                     x={transformer.toScreen([0 , 0])[0]} 
                     y={transformer.toScreen([0 , 0])[1]} 

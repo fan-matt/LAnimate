@@ -2,24 +2,20 @@ import React, { useState } from "react";
 import styled from 'styled-components';
 
 import Button from './../Button/Button.js';
-import FAButton from './../Button/FAButton.js';
+import VectorEditor from './VectorEditor.js';
+import EditorIcon from './EditorIcon.js';
+
+import AddIcon from './../../icons/plus-square.svg';
 
 
-// import "./GAControlPanel.scss";
 const CPanel = styled.div`
     position: relative;
-    width: 20vw;
-    height: 100%;
-
-    box-shadow: 3px 0px 8px black;
 `;
 
 const Menu = styled.ul`
     display: flex;
     flex-direction: horizontal;
     justify-content: space-evenly;
-
-    ${'' /* padding-bottom: 10px; */}
 
     border-bottom: solid;
     border-width: 1px;
@@ -44,7 +40,6 @@ const MenuItem = styled(Button)`
         background-color: #B1E4E3;
         transition: .3s;
         transform: scaleX( ${props => props.selected ? 1 : 0} );
-        ${'' /* transform: scaleX(0); */}
     }
 
     &:hover::before {
@@ -52,9 +47,17 @@ const MenuItem = styled(Button)`
     }
 `;
 
-const FAB = styled(FAButton)`
-    bottom: 25px;
-    right: 25px;
+const VectorList = styled.ol`
+    display: flex;
+    flex-direction: column;
+`;
+
+const AddContainer = styled.div`
+    display: flex;
+    justify-content: space-around;
+
+    padding: 20px;
+    height: 30px;
 `;
 
 
@@ -65,9 +68,22 @@ export default function GAControlPanel(props) {
 
     let vectorsBody = (
         <>
-            <FAB radius="25px">
-                +
-            </FAB>
+            <VectorList>
+                {/* <VectorEditor vector={[1 , 1]} />
+                <VectorEditor vector={[1 , 1]} /> */}
+                {props.vectors.map( (i , index) => 
+                    <VectorEditor 
+                        key={'vector-editor' + String(index)} 
+                        index={index} 
+                        vector={i} 
+                        deleteVector={props.deleteVector}
+                    /> 
+                )}
+            </VectorList>
+
+            <AddContainer>
+                <EditorIcon src={AddIcon} alt='Add Vector' onClick={() => props.addVector()} />
+            </AddContainer>
         </>
     );
 
@@ -85,7 +101,7 @@ export default function GAControlPanel(props) {
 
 
     return(
-        <CPanel>
+        <CPanel className={props.className}>
             <Menu>
                 <MenuItem onClick={() => setBodyIndex(0)} selected={bodyIndex === 0 ? true : false}>
                     Vectors
@@ -100,31 +116,3 @@ export default function GAControlPanel(props) {
         </CPanel>
     );
 }
-
-
-// class GAControlPanel extends React.Component {
-//     render() {
-//         return(
-//             <div className="gacp">
-//                 <div className="gacp-menu">
-//                     <div className="gacp-menu-nav">
-//                         <nav>
-//                             <ul>
-//                                 <li>
-//                                     Vectors
-//                                 </li>
-
-//                                 <li>
-//                                     Transformations
-//                                 </li>
-//                             </ul>
-//                         </nav>
-//                     </div>
-//                 </div>
-//             </div>
-//         );
-//     }
-// }
-
-
-// export default GAControlPanel;
