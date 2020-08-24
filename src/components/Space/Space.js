@@ -107,6 +107,7 @@ class Space extends React.Component {
                         transformer={this.state.transformer}
                         scrollCounter={this.state.scrollCounter}
                         scrollScale={this.state.scrollScale}
+                        vectors={this.props.vectors}
                      />
                 </Stage>
             </div>

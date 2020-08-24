@@ -4,6 +4,7 @@ import { Layer, Text , Circle } from 'react-konva';
 import Axis from "./Axis.js";
 
 import ExtendedLine from "./ExtendedLine.js";
+import Vector from './Vector.js';
 
 
 class Grid extends React.Component {
@@ -66,30 +67,18 @@ class Grid extends React.Component {
         }
         
 
+        let vectors = this.props.vectors.map( 
+            (vector , index) =>  
+                <Vector 
+                    key={'drawn-vector' + String(index)}
+                    transformer={transformer}
+                    vector={vector}
+                />
+        )
+
 
         return(
             <Layer className={this.props.className}>
-                <Circle 
-                    x={transformer.toScreen([0 , 0])[0]} 
-                    y={transformer.toScreen([0 , 0])[1]} 
-                    radius={10}
-                    fill={"red"}
-                />
-
-                <Circle 
-                    x={transformer.toScreen([-1 , 1])[0]} 
-                    y={transformer.toScreen([-1 , 1])[1]} 
-                    radius={10}
-                    fill={"red"}
-                />
-
-                <Circle 
-                    x={transformer.toScreen([1 , -1])[0]} 
-                    y={transformer.toScreen([1 , -1])[1]} 
-                    radius={10}
-                    fill={"red"}
-                />
-
                 <Axis 
                     transformer={transformer} 
                     realSize={this.props.realSize}
@@ -97,7 +86,7 @@ class Grid extends React.Component {
 
                 {xGridLines}
                 {yGridLines}
-
+                {vectors}
             </Layer>
         );
     }

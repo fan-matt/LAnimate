@@ -35,9 +35,9 @@ export default function VectorEditor(props) {
         <Editor className={props.className}>
             <div>
                 <TeX math={'x_{' + String(props.index) + '}=('} />
-                <NumberInput  value={props.vector[0]} />
+                <NumberInput  value={props.vector[0]} onChange={(e) => props.editVector(props.index , [e.target.value , props.vector[1]])} />
                 <TeX math=',' />
-                <NumberInput  value={props.vector[1]} />
+                <NumberInput  value={props.vector[1]} onChange={(e) => props.editVector(props.index , [props.vector[0] , e.target.value])} />
                 <TeX math=')' />
             </div>
 

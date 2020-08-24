@@ -6,6 +6,8 @@ import { Line } from "react-konva";
 /**
  * Given two points, draws a line that extends beyond the two points, at
  * least beyond the viewport.
+ * 
+ * Provide the two points in terms of grid points, not actual screen coordinates.
  */
 class ExtendedLine extends React.Component {
      render() {

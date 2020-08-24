@@ -76,6 +76,7 @@ export default function GAControlPanel(props) {
                         key={'vector-editor' + String(index)} 
                         index={index} 
                         vector={i} 
+                        editVector={props.editVector}
                         deleteVector={props.deleteVector}
                     /> 
                 )}

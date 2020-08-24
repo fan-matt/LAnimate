@@ -26,7 +26,15 @@ export default function GraphApp(props) {
 
     function addVector() {
         let newVectorList = vectors.slice();
-        newVectorList.push([undefined , undefined]);
+        newVectorList.push(['' , '']);      // Don't push undefined and other weird things
+        // https://stackoverflow.com/questions/47012169/a-component-is-changing-an-uncontrolled-input-of-type-text-to-be-controlled-erro
+
+        setVectors(newVectorList);
+    }
+
+    function editVector(index , newValue) {
+        let newVectorList = vectors.slice();
+        newVectorList[index] = newValue;
 
         setVectors(newVectorList);
     }
@@ -41,8 +49,13 @@ export default function GraphApp(props) {
 
     return(
         <GApp className={props.className} >
-            <Space />
-            <ControlPanel vectors={vectors} addVector={addVector} deleteVector={deleteVector} />
+            <Space vectors={vectors} />
+            <ControlPanel 
+                vectors={vectors} 
+                addVector={addVector} 
+                editVector={editVector} 
+                deleteVector={deleteVector} 
+            />
         </GApp>
     );
 }
