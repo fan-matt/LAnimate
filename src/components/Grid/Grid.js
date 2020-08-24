@@ -1,5 +1,5 @@
 import React from "react";
-import { Layer, Text , Circle } from 'react-konva';
+import { Layer, Text } from 'react-konva';
 
 import Axis from "./Axis.js";
 
