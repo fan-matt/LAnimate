@@ -7,7 +7,7 @@ import TeX from '@matejmazur/react-katex';
 import NumberInput from './NumberInput.js';
 import EditorIcon from './EditorIcon.js';
 
-import XIcon from './../../icons/x.svg';
+import XIcon from './../../img/icons/x.svg';
 
 
 const Editor = styled.li`

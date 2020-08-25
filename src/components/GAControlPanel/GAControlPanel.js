@@ -5,7 +5,7 @@ import Button from './../Button/Button.js';
 import VectorEditor from './VectorEditor.js';
 import EditorIcon from './EditorIcon.js';
 
-import AddIcon from './../../icons/plus-square.svg';
+import AddIcon from './../../img/icons/plus-square.svg';
 
 
 const CPanel = styled.div`
