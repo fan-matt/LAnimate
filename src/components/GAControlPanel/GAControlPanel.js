@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import Button from './../Button/Button.js';
 import VectorEditor from './VectorEditor.js';
+import TransformationEditor from './TransformationEditor.js';
 import EditorIcon from './EditorIcon.js';
 
 import AddIcon from './../../img/icons/plus-square.svg';
@@ -47,7 +48,7 @@ const MenuItem = styled(Button)`
     }
 `;
 
-const VectorList = styled.ol`
+const ObjectList = styled.ol`
     display: flex;
     flex-direction: column;
 `;
@@ -68,9 +69,7 @@ export default function GAControlPanel(props) {
 
     let vectorsBody = (
         <>
-            <VectorList>
-                {/* <VectorEditor vector={[1 , 1]} />
-                <VectorEditor vector={[1 , 1]} /> */}
+            <ObjectList>
                 {props.vectors.map( (i , index) => 
                     <VectorEditor 
                         key={'vector-editor' + String(index)} 
@@ -80,10 +79,30 @@ export default function GAControlPanel(props) {
                         deleteVector={props.deleteVector}
                     /> 
                 )}
-            </VectorList>
+            </ObjectList>
 
             <AddContainer>
                 <EditorIcon src={AddIcon} alt='Add Vector' onClick={() => props.addVector()} />
+            </AddContainer>
+        </>
+    );
+
+    let transformationsBody = (
+        <>
+            <ObjectList>
+                {props.transformations.map( (i , index) => 
+                    <TransformationEditor 
+                        key={'transformation-editor' + String(index)} 
+                        index={index} 
+                        transformation={i} 
+                        editTransformation={props.editTransformation}
+                        deleteTransformation={props.deleteTransformation}
+                    /> 
+                )}
+            </ObjectList>
+
+            <AddContainer>
+                <EditorIcon src={AddIcon} alt='Add Transformation' onClick={() => props.addTransformation()} />
             </AddContainer>
         </>
     );
@@ -95,9 +114,11 @@ export default function GAControlPanel(props) {
             break;
 
         case 1:
+            panelBody = transformationsBody;
             break;
 
         default:
+            panelBody = vectorsBody;
     }
 
 

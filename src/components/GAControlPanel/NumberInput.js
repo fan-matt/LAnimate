@@ -9,7 +9,6 @@ const Input = styled.input`
     background-color: lightgray;
 
     width: 50px;
-    margin: auto 10px;
 
     font-size: 20px;
     text-align: center;
@@ -23,6 +22,6 @@ const Input = styled.input`
 export default function NumberInput(props) {
 
     return (
-        <Input value={props.value} onChange={props.onChange} />
+        <Input className={props.className} value={props.value} onChange={props.onChange} />
     );
 }
