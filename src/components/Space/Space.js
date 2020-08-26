@@ -1,120 +1,94 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React , { useState , useEffect , useRef } from "react";
+import styled from 'styled-components';
 import { Stage } from "react-konva";
 
 import Grid from "./../Grid/Grid.js";
 
 import CT from "./../../util/CoordinateTranslate.js";
 
-import "./Space.scss";
+
+const SpaceContainer = styled.div`
+    width: 100%;
+    height: 100%;
+`;
 
 
-class Space extends React.Component {
-    constructor(props) {
-        super(props);
-        this.myRef = React.createRef();
-        this.state = {
-            width: 0,
-            height: 0,
-            transformer: new CT(),
-            scrollCounter: 0,
-            scrollScale: 2,
-        }
+export default function Space(props) {
+    const scrollScale = 2;
+
+    const [width , setWidth] = useState(0);
+    const [height , setHeight] = useState(0);
+    const [tr , setTransformer] = useState(new CT());
+    const [scrollCounter , setScrollCounter] = useState(0);
+
+    const currentEl = useRef(null);
+    
+    // Runs only once
+    // https://stackoverflow.com/questions/53120972/how-to-call-loading-function-with-react-useeffect-only-once
+    useEffect( () => {
+        setDimensions();
+    } , []);
+
+    useEffect( () => {
+        let currentElNode = currentEl.current;      // We make this copy for cleanup purposes- keep it here!
+
+        window.addEventListener('resize' ,  setDimensions);
+        currentEl.current.addEventListener('wheel' , handleScroll);
+
+        return () => {
+            window.removeEventListener('resize' , setDimensions);
+            currentElNode.removeEventListener('wheel' , handleScroll);
+        };
+    });
+
+
+    function setDimensions() {
+        let spaceWidth = currentEl.current.offsetWidth;
+        let spaceHeight = currentEl.current.offsetHeight;
+
+        let tempTr = new CT();
+        tempTr.origin = [spaceWidth / 2 , spaceHeight / 2];
+        tempTr.scale = spaceWidth / 20;
+
+        setWidth(spaceWidth);
+        setHeight(spaceHeight);
+        setTransformer(tempTr);
     }
 
-
-    setDimensions = () => {
-        let spaceWidth = this.myRef.current.offsetWidth;
-        let spaceHeight = this.myRef.current.offsetHeight;
-
-        // We do this part since we don't want to pan- at least for now...
-        let tempTransformer = new CT();
-        tempTransformer.origin = [spaceWidth / 2 , spaceHeight / 2];
-        tempTransformer.scale = spaceWidth / 20;
-        //////////////////////////////////////////////////////////////////
-
-        this.setState({
-            width: spaceWidth,
-            height: spaceHeight,
-            transformer: tempTransformer,
-        });
-    }
-
-
-    componentDidMount() {
-        // let spaceWidth = this.myRef.current.offsetWidth;
-        // let spaceHeight = this.myRef.current.offsetHeight;
-        // let tempTransformer = new CT();
-        // tempTransformer.origin = [spaceWidth / 2 , spaceHeight / 2];
-        // tempTransformer.scale = 50;
-
-        // this.setState({
-        //     transformer: tempTransformer,
-        // });
-
-        this.setDimensions();
-        window.addEventListener('resize' , this.setDimensions);
-
-        let thisElement = ReactDOM.findDOMNode(this);
-        thisElement.addEventListener("wheel" , this.handleScroll);
-    }
-
-
-    componentWillUnmount() {
-        window.removeEventListener('resize' , this.setDimensions);
-
-        let thisElement = ReactDOM.findDOMNode(this);
-        thisElement.removeEventListener("wheel" , this.handleScroll);
-    }
-
-
-    handleScroll = (e) => {
+    function handleScroll(e) {
         e.preventDefault();
 
         let multiplier;
 
         if(e.deltaY > 0) {
-            multiplier = 1 / this.state.scrollScale;
-            this.setState({
-                scrollCounter: this.state.scrollCounter - 1,
-            })
+            multiplier = 1 / scrollScale;
+            setScrollCounter(scrollCounter - 1)
         } else {
-            multiplier = this.state.scrollScale;
-            this.setState({
-                scrollCounter: this.state.scrollCounter + 1,
-            })
+            multiplier = scrollScale;
+            setScrollCounter(scrollCounter + 1)
         }
 
-        let newScale = this.state.transformer.scale * multiplier;
+        let newScale = tr.scale * multiplier;
 
-        let tempTransformer = new CT();
-        tempTransformer.origin = this.state.transformer.origin;
-        tempTransformer.scale = newScale;
+        let tempTr = new CT();
+        tempTr.origin = tr.origin;
+        tempTr.scale = newScale;
 
-
-        this.setState({
-            transformer: tempTransformer,
-        });
-    }
-    
-
-    render() {
-        return(
-            <div className="space-container" ref={this.myRef} onScroll={this.handleScroll}>
-                <Stage width={this.state.width} height={this.state.height}>
-                    <Grid
-                        realSize={[this.state.width , this.state.height]}
-                        transformer={this.state.transformer}
-                        scrollCounter={this.state.scrollCounter}
-                        scrollScale={this.state.scrollScale}
-                        vectors={this.props.vectors}
-                     />
-                </Stage>
-            </div>
-        );
+        setTransformer(tempTr);
     }
 
+
+    return(
+        <SpaceContainer className={props.className} ref={currentEl} onScroll={handleScroll}>
+            <Stage width={width} height={height}>
+                <Grid
+                    realSize={[width , height]}
+                    transformer={tr}
+                    scrollCounter={scrollCounter}
+                    scrollScale={scrollScale}
+                    vectors={props.vectors}
+                    />
+            </Stage>
+        </SpaceContainer>
+    );
 }
-
-
-export default Space;

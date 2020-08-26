@@ -3,6 +3,7 @@ import { Arrow } from 'react-konva';
 
 
 export default function Vector(props) {
+    // I guess '' counts as a number??
     if(isNaN(props.vector[0]) || isNaN(props.vector[1])
         || props.vector[0] === '' || props.vector[1] === '') {
         return(

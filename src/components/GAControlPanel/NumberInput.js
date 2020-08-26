@@ -20,7 +20,6 @@ const Input = styled.input`
 
 
 export default function NumberInput(props) {
-
     return (
         <Input className={props.className} value={props.value} onChange={props.onChange} />
     );

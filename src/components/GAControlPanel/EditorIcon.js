@@ -16,7 +16,6 @@ const Icon = styled.img`
 
 
 export default function EditorIcon(props) {
-    
     return (
         <Icon src={props.src} alt={props.alt} onClick={props.onClick} size={props.size} />
     );

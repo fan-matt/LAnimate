@@ -34,7 +34,6 @@ const ElementInput = styled(NumberInput)`
 
 
 export default function VectorEditor(props) {
-
     return (
         <Editor className={props.className}>
             <div>
