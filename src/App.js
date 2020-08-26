@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import "./reset.scss";
+import "./reset.css";
 
 import MainHeader from "./components/MainHeader/MainHeader.js";
 import GraphApp from "./components/GraphApp/GraphApp.js";
