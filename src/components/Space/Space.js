@@ -58,22 +58,24 @@ export default function Space(props) {
     function handleScroll(e) {
         e.preventDefault();
 
-        let multiplier;
+        let newScrollCounter = scrollCounter;
 
         if(e.deltaY > 0) {
-            multiplier = 1 / scrollScale;
-            setScrollCounter(scrollCounter - 1)
+            newScrollCounter -= 1;
         } else {
-            multiplier = scrollScale;
-            setScrollCounter(scrollCounter + 1)
+            newScrollCounter += 1;
         }
 
-        let newScale = tr.scale * multiplier;
-
+        // We calculate this absolutely every time instead of incrementally
+        // since computers aren't 100% accurate and crazy scrolling using
+        // the incrementing method can mess up the scaling.
+        let newScale = width / 20 * Math.pow(scrollScale , newScrollCounter);
         let tempTr = new CT();
+
         tempTr.origin = tr.origin;
         tempTr.scale = newScale;
 
+        setScrollCounter(newScrollCounter);
         setTransformer(tempTr);
     }
 
