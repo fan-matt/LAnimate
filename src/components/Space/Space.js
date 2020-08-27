@@ -25,9 +25,9 @@ export default function Space(props) {
     
     // Runs only once
     // https://stackoverflow.com/questions/53120972/how-to-call-loading-function-with-react-useeffect-only-once
-    useEffect( () => {
-        setDimensions();
-    } , []);
+    // See also:
+    // https://stackoverflow.com/questions/55840294/how-to-fix-missing-dependency-warning-when-using-useeffect-react-hook
+    useEffect(setDimensions , []);
 
     useEffect( () => {
         let currentElNode = currentEl.current;      // We make this copy for cleanup purposes- keep it here!
