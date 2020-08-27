@@ -10,7 +10,7 @@ import EditorIcon from './EditorIcon.js';
 import XIcon from './../../img/icons/x.svg';
 
 
-const Editor = styled.li`
+const Editor = styled.div`
     display: flex;
     flex-direction: horizontal;
     justify-content: space-between;
@@ -23,6 +23,8 @@ const Editor = styled.li`
     border-bottom: solid;
     border-color: gray;
     border-width: 1px;
+
+    background-color: #f7f7f7;
 `;
 
 const DeleteIcon = styled(EditorIcon)`

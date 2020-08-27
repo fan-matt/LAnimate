@@ -10,7 +10,7 @@ import EditorIcon from './EditorIcon.js';
 import XIcon from './../../img/icons/x.svg';
 
 
-const Editor = styled.li`
+const Editor = styled.div`
     display: flex;
     flex-direction: horizontal;
     justify-content: space-between;
