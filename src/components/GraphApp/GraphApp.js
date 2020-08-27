@@ -13,8 +13,13 @@ const GApp = styled.div`
     height: calc(100vh - 50px);
 `;
 
+const StyledSpace = styled(Space)`
+    width: calc(100vw - 420px);     ${'' /* Subtract the width of the control panel */}
+`;
+
 const ControlPanel = styled(GAControlPanel)`
     min-width: 420px; ${'' /* Haha but this number works really well */}
+    max-width: 420px;
     height: 100%;
 
     box-shadow: 3px 0px 8px black;
@@ -72,7 +77,7 @@ export default function GraphApp(props) {
 
     return(
         <GApp className={props.className} >
-            <Space vectors={vectors} />
+            <StyledSpace vectors={vectors} />
             <ControlPanel 
                 vectors={vectors} 
                 addVector={addVector} 

@@ -48,11 +48,25 @@ export default function Space(props) {
 
         let tempTr = new CT();
         tempTr.origin = [spaceWidth / 2 , spaceHeight / 2];
-        tempTr.scale = spaceWidth / 20;
+        tempTr.scale = getNewScale(spaceWidth , spaceHeight , scrollCounter);
 
         setWidth(spaceWidth);
         setHeight(spaceHeight);
         setTransformer(tempTr);
+    }
+
+    // These parameters really are all necessary- don't remove!
+    function getNewScale(width , height , scrollCounter) {
+        let temp;
+
+        if(width >= height) {
+            temp = width / 20;
+        } else {
+            temp = height / 20;
+        }
+
+        temp *= Math.pow(scrollScale , scrollCounter);
+        return temp;
     }
 
     function handleScroll(e) {
@@ -69,7 +83,7 @@ export default function Space(props) {
         // We calculate this absolutely every time instead of incrementally
         // since computers aren't 100% accurate and crazy scrolling using
         // the incrementing method can mess up the scaling.
-        let newScale = width / 20 * Math.pow(scrollScale , newScrollCounter);
+        let newScale = getNewScale(width , height , newScrollCounter);
         let tempTr = new CT();
 
         tempTr.origin = tr.origin;
