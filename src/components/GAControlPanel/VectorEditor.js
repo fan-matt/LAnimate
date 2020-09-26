@@ -14,7 +14,7 @@ const Editor = styled.div`
     display: flex;
     flex-direction: horizontal;
     justify-content: space-between;
-    width: calc(100% - 20px);   ${'' /* subtract left+right padding */}
+    width: calc(100% - 20px);   /* subtract left+right padding */
 
     font-size: 20px;
 

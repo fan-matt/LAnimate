@@ -14,11 +14,11 @@ const GApp = styled.div`
 `;
 
 const StyledSpace = styled(Space)`
-    width: calc(100vw - 420px);     ${'' /* Subtract the width of the control panel */}
+    width: calc(100vw - 420px);         /* Subtract the width of the control panel */
 `;
 
 const ControlPanel = styled(GAControlPanel)`
-    min-width: 420px; ${'' /* Haha but this number works really well */}
+    min-width: 420px;                   /* Haha but this number works really well */
     max-width: 420px;
     height: 100%;
 

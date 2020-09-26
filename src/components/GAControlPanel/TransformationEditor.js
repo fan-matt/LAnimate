@@ -14,8 +14,8 @@ const Editor = styled.div`
     display: flex;
     flex-direction: horizontal;
     justify-content: space-between;
-    width: calc(100% - 20px);               ${'' /* subtract left+right padding */}
-    height: 75px;                           ${'' /* Magic number */}
+    width: calc(100% - 20px);   /* subtract left+right padding */
+    height: 75px;               /* Magic number */
 
     font-size: 20px;
 
@@ -38,7 +38,7 @@ const TransformationContainer = styled.div`
 const Matrix = styled.div`
     display: inline-flex;
     flex-direction: column;
-    transform: translateY(-22%);            ${'' /* Another magic number */}
+    transform: translateY(-22%);    /* Another magic number */
 `;
 
 const MatrixRow = styled.div`

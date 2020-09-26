@@ -17,9 +17,9 @@ const FAB = styled(Button)`
     background-color: darkslategray;
 
     border-radius: ${props => props.radius};
-    ${'' /* border-width: 2px;
+    /* border-width: 2px;
     border-color: darkslategray;
-    border-style: solid; */}
+    border-style: solid; */
 
     font-size: calc(${props => props.radius} * 1.4);
     font-weight: bolder;

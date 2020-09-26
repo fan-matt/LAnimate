@@ -41,7 +41,7 @@ const MenuItem = styled(Button)`
         content: "";
         overflow: visible;
         bottom: 7px;
-        width: calc(100% - 30px);   ${'' /* subtract double padding */}
+        width: calc(100% - 30px);   /* subtract double padding */
         height: 3px;
         margin: 0;
         background-color: #B1E4E3;
@@ -73,7 +73,7 @@ const ActionBar = styled.div`
     flex-direction: row;
     justify-content: space-between;
 
-    width: calc(100% - 100px); ${`` /* Subtract double padding */}
+    width: calc(100% - 100px);  /* Subtract double padding */
     padding: 10px 50px;
 
     background-color: lightgray;
