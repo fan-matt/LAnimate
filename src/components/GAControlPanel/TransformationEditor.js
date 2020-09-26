@@ -67,7 +67,7 @@ export default function TranformationEditor(props) {
                 <TeX math={'T_{' + String(props.index) + '}=\\Bigg('} />
                 <Matrix>
                     <MatrixRow first>
-                        <ElementInput value={props.transformation[0]} onChange={(e) => handleChange(0 , e.target.value)} />
+                        <ElementInput autoFocus value={props.transformation[0]} onChange={(e) => handleChange(0 , e.target.value)} />
                         <ElementInput value={props.transformation[1]} onChange={(e) => handleChange(1 , e.target.value)} />
                     </MatrixRow>
                     

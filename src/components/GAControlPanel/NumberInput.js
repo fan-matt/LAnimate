@@ -21,6 +21,6 @@ const Input = styled.input`
 
 export default function NumberInput(props) {
     return (
-        <Input className={props.className} value={props.value} onChange={props.onChange} />
+        <Input autoFocus={props.autoFocus} className={props.className} value={props.value} onChange={props.onChange} />
     );
 }
