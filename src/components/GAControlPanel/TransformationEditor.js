@@ -53,6 +53,13 @@ const ElementInput = styled(NumberInput)`
 
 
 export default function TranformationEditor(props) {
+    function handleEnter(event) {
+        if(event.key === 'Enter') {
+            props.addTransformation();
+        }
+    }
+
+
     function handleChange(pos , value) {
         let newTransformation = props.transformation.slice();
         newTransformation[pos] = value;
@@ -62,7 +69,7 @@ export default function TranformationEditor(props) {
 
 
     return (
-        <Editor className={props.className}>
+        <Editor className={props.className} onKeyPress={handleEnter}>
             <TransformationContainer>
                 <TeX math={'T_{' + String(props.index) + '}=\\Bigg('} />
                 <Matrix>

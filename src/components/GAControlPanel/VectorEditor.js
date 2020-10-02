@@ -34,8 +34,15 @@ const ElementInput = styled(NumberInput)`
 
 
 export default function VectorEditor(props) {
+    function handleEnter(event) {
+        if(event.key === 'Enter') {
+            props.addVector();
+        }
+    }
+
+
     return (
-        <Editor className={props.className}>
+        <Editor className={props.className} onKeyPress={handleEnter}>
             <div>
                 <TeX math={'x_{' + String(props.index) + '}=('} />
                 <ElementInput  autoFocus value={props.vector[0]} onChange={(e) => props.editVector(props.index , [e.target.value , props.vector[1]])} />

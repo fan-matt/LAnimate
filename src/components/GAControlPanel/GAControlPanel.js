@@ -185,6 +185,7 @@ export default function GAControlPanel(props) {
                         key={'vector-editor' + String(index)} 
                         index={index} 
                         vector={i} 
+                        addVector={props.addVector}
                         editVector={props.editVector}
                         deleteVector={props.deleteVector}
                     /> 
@@ -206,7 +207,8 @@ export default function GAControlPanel(props) {
                     <TransformationEditor 
                         key={'transformation-editor' + String(index)} 
                         index={index} 
-                        transformation={i} 
+                        transformation={i}
+                        addTransformation={props.addTransformation} 
                         editTransformation={props.editTransformation}
                         deleteTransformation={props.deleteTransformation}
                     /> 

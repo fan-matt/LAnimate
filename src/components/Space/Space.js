@@ -97,13 +97,26 @@ export default function Space(props) {
     return(
         <SpaceContainer className={props.className} ref={currentEl} onScroll={handleScroll}>
             <Stage width={width} height={height}>
+                {/* Add a "ghost" grid here later that displays under the transformed grid */}
                 <Grid
                     realSize={[width , height]}
                     transformer={tr}
                     scrollCounter={scrollCounter}
                     scrollScale={scrollScale}
                     vectors={props.vectors}
-                    />
+                    transformations={props.transformations}
+                    ghost={true}
+                />
+
+                <Grid
+                    realSize={[width , height]}
+                    transformer={tr}
+                    scrollCounter={scrollCounter}
+                    scrollScale={scrollScale}
+                    vectors={props.vectors}
+                    transformations={props.transformations}
+                    ghost={false}
+                />
             </Stage>
         </SpaceContainer>
     );

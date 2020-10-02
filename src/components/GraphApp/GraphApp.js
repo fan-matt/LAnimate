@@ -54,6 +54,13 @@ export default function GraphApp(props) {
 
     function addTransformation() {
         let newTransformationList = transformations.slice();
+
+        /*
+            Where each array element corresponds to in the matrix:
+
+            [0  1]
+            [2  3]
+        */
         newTransformationList.push(['' , '' , '' , '']);      // Don't push undefined and other weird things
         // https://stackoverflow.com/questions/47012169/a-component-is-changing-an-uncontrolled-input-of-type-text-to-be-controlled-erro
 
@@ -77,7 +84,7 @@ export default function GraphApp(props) {
 
     return(
         <GApp className={props.className} >
-            <StyledSpace vectors={vectors} />
+            <StyledSpace vectors={vectors} transformations={transformations} />
             <ControlPanel 
                 vectors={vectors} 
                 addVector={addVector} 

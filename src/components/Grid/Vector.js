@@ -1,6 +1,8 @@
 import React from 'react';
 import { Arrow } from 'react-konva';
 
+import { multiplyVector } from './../../util/MatrixMult';
+
 
 export default function Vector(props) {
     // I guess '' counts as a number??
@@ -13,7 +15,13 @@ export default function Vector(props) {
     } else {
         let tr = props.transformer;
         let origin = tr.toScreen([0 , 0])
-        let point = tr.toScreen(props.vector);
+        let vectorCopy = [].concat(props.vector);   // Deep copy
+
+        for(let i = 0; i < props.transformations.length; i ++) {
+            vectorCopy = multiplyVector(props.transformations[i] , vectorCopy);
+        }
+
+        let point = tr.toScreen(vectorCopy);
 
         let points = [
             origin[0],
@@ -26,8 +34,8 @@ export default function Vector(props) {
             <React.Fragment>
                 <Arrow 
                     points={points}
-                    fill='blue'
-                    stroke='blue'
+                    fill='red'
+                    stroke='red'
                     strokeWidth={2}
                 />
             </React.Fragment>
